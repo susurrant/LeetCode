@@ -69,7 +69,7 @@ def print_list(l):
 if __name__ == '__main__':
     l1 = create_list([5])
     l2 = create_list([5])
-    
+
     print('result:')
     s = Solution()
     print_list(s.addTwoNumbers(l1, l2))
