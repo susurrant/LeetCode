@@ -22,7 +22,6 @@ class Solution:
                 if total in total_map:
                     for pair in total_map[total]:
                         if pair[0] > idx2:
-
                             results.add((nums[idx1], nums[idx2], nums[pair[0]], nums[pair[1]]))
 
         return [list(result) for result in results]
