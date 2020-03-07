@@ -4,18 +4,28 @@
 
 
 class Solution:
-    def isMatch(self, s: 'str', p: 'str') -> 'bool':
-        idx = 0
-        pre_c = s[0]
-        for c in p:
-            if c == '.':
-                idx += 1
-                pre_c = ''
-            elif c == '*':
+    def isMatch(self, s: str, p: str) -> bool:
+        ls, lp = len(s), len(p)
+        dp = [[False for _ in range(lp + 1)] for _ in range(ls + 1)]
+        dp[0][0] = True
+        for j in range(2, lp + 1):
+            dp[0][j] = dp[0][j - 2] and p[j - 1] == '*'
+        #print(dp[0])
+        for i in range(1, ls + 1):
+            for j in range(1, lp + 1):
+                m, n = i - 1, j - 1
 
-            elif c.isalpha():
-                if s[idx] == c:
-                    idx += 1
-                    continue
-                else:
-                    return False
+                if p[n] == '*':
+                    if s[m] == p[n - 1] or p[n - 1] == '.':
+                        dp[i][j] = dp[i][j - 2] or dp[i - 1][j]
+                    else: dp[i][j] = dp[i][j - 2]
+                elif s[m] == p[n] or p[n] == '.':
+                    dp[i][j] = dp[i - 1][j - 1]
+        return dp
+
+
+s = Solution()
+m = s.isMatch('aab', 'a*b')
+for mm in m:
+    print(mm)
+
