@@ -10,7 +10,7 @@ class Solution:
             while  i<num and h[i] == 0:
                 i += 1
             j = i+1
-            
+
             while i!=num:
                 tem = 0
                 while j < num and h[i] > h[j]:
